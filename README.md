@@ -1,4 +1,4 @@
 edu
 ===
 
-Self-education
+SICP, Google CodeJam, etc.
