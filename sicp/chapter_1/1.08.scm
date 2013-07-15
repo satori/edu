@@ -1,3 +1,8 @@
+(define (square x) (* x x))
+
+(define (abs x)
+  (if (< x 0)))
+
 (define (cbrt x)
   (define (improve guess)
 	(/ (+ (/ x (square guess))
