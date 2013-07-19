@@ -1,7 +1,7 @@
 """
-Google Code Jam 2012 Problem C
+Google Code Jam 2012 Problem A
 Usage:
-    python c.py < input.txt > output.txt
+    python a.py < input.txt > output.txt
 """
 import multiprocessing
 import sys
