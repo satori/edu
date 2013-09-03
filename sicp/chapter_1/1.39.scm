@@ -1,0 +1,18 @@
+(define (cont-frac n d k)
+  (define (fraction i)
+	(/ (n i) (+ (d i)
+				(cond ((> i k) 0.0)
+					  (else (fraction (+ i 1)))))))
+  (fraction 1))
+
+(define (tan-cf x k)
+  (cont-frac (lambda (i)
+			   (cond ((= i 1) x)
+					 (else (- (* x x)))))
+			 (lambda (i)
+			   (- (* i 2) 1))
+			 k))
+
+(tan-cf 10 5)
+(tan-cf 10 10)
+(tan-cf 10 25)
