@@ -1,0 +1,20 @@
+(define (cons x y)
+  (* (expt 2 x)
+	 (expt 3 y)))
+
+(define (car z)
+  (define (iter n)
+	(cond ((= 0 (remainder z (expt 2 (+ n 1))))
+		   (iter (+ n 1)))
+		  (else n)))
+  (iter 0))
+
+(define (cdr z)
+  (define (iter n)
+	(cond ((= 0 (remainder z (expt 3 (+ n 1))))
+		   (iter (+ n 1)))
+		  (else n)))
+  (iter 0))
+
+(car (cons 3 7))
+(cdr (cons 3 7))
