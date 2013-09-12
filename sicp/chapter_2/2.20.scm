@@ -1,0 +1,10 @@
+(define (same-parity x . y)
+  (define (iter z filter-by)
+	(cond ((null? z) z)
+		  ((filter-by (car z))
+		   (cons (car z) (iter (cdr z) filter-by)))
+		  (else (iter (cdr z) filter-by))))
+  (iter (cons x y) (if (even? x) even? odd?)))
+
+(same-parity 1 2 3 4 5 6 7)
+(same-parity 2 3 4 5 6 7)
