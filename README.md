@@ -4,7 +4,7 @@ This repository contains code written for self-educational purposes.
 
 It consists of:
 
-* SICP exercises (Scheme).
+* SICP exercises (MIT/GNU Scheme and Racket).
 * Google CodeJam problems (Python).
 
 Feel free to examine.
