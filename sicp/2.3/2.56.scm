@@ -33,8 +33,8 @@
   (cond	((=number? e 0) 1)
 		((=number? e 1) b)
 		((and (number? b)
-			  (number? e)
-			  (expt b e)))
+			  (number? e))
+		 (expt b e))
 		(else (list '** b e))))
 
 (define (sum? x)
