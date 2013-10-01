@@ -1,0 +1,15 @@
+(define (make-from-mag-ang mag ang)
+  (lambda (op)
+	(cond ((eq? op 'magnitude) mag)
+		  ((eq? op 'angle) ang)
+		  ((eq? op 'real-part)
+		   (* mag (cos ang)))
+		  ((eq? op 'imag-part)
+		   (* mag (sin ang)))
+		  (else
+			(error "Unknown op -- MAKE-FROM-MAG-ANG" op)))))
+
+((make-from-mag-ang 3 5) 'magnitude)
+((make-from-mag-ang 3 5) 'angle)
+((make-from-mag-ang 3 5) 'real-part)
+((make-from-mag-ang 3 5) 'imag-part)
