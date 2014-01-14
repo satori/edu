@@ -21,9 +21,9 @@
 
 (define (cont-frac n d k)
   (define (fraction i)
-    (/ (n i) (+ (d i)
-                (cond ((> i k) 0.0)
-                      (else (fraction (+ i 1)))))))
+    (if (> i k)
+      0
+      (/ (n i) (+ (d i) (fraction (+ i 1))))))
   (fraction 1))
 
 (define (tan-cf x k)
