@@ -46,7 +46,7 @@
 (define (install-complex-package)
   (put '=zero? '(complex)
        (lambda (z) (and (= (real-part z) 0)
-                        (= (real-part z) 0))))
+                        (= (imag-part z) 0))))
 
   'done)
 
@@ -55,4 +55,5 @@
 (=zero? 0)
 (=zero? (make-rational 0 2))
 (=zero? (make-complex-from-real-imag 0 0))
+(=zero? (make-complex-from-real-imag 0 1))
 (=zero? (make-complex-from-mag-ang 0 0))
