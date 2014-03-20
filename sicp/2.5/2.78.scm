@@ -1,4 +1,4 @@
-; Copyright (C) 2013 by Maxim Bublis <b@codemonkey.ru>
+; Copyright (C) 2013-2014 by Maxim Bublis <b@codemonkey.ru>
 ;
 ; Permission is hereby granted, free of charge, to any person obtaining
 ; a copy of this software and associated documentation files (the
@@ -25,7 +25,7 @@
   (hash-table/put! *op-table* (list op type) proc))
 
 (define (get op type)
-  (hash-table/get *op-table* (list op type) '()))
+  (hash-table/get *op-table* (list op type) #f))
 
 (define (attach-tag type-tag contents)
   (if (number? contents)
