@@ -233,6 +233,12 @@
        (lambda (x y) (and (= (real-part x) (real-part y))
                           (= (imag-part x) (imag-part y)))))
 
+  (put 'real-part '(complex)
+       (lambda (x) (real-part x)))
+
+  (put 'imag-part '(complex)
+       (lambda (x) (imag-part x)))
+
   'done)
 
 (install-complex-package)
