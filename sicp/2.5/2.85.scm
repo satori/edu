@@ -61,11 +61,12 @@
 
   (define (raise-into source target-type)
     (let ((source-type (type-tag source)))
-      (cond ((equal? source-type target-type)
-             source)
-            ((get 'raise (list source-type))
-             (raise-into (apply-generic 'raise source) target-type))
-            (else #f))))
+      (if (equal? source-type target-type)
+        source
+        (let ((raise (get 'raise (list source-type))))
+          (if raise
+            (raise-into (raise (contents source)) target-type)
+            #f)))))
 
   (let ((type-tags (map type-tag args)))
     (let ((proc (get op type-tags)))
@@ -91,3 +92,5 @@
 
 (add (make-complex-from-real-imag 2. 3) (make-complex-from-real-imag 4. -3))
 (add (make-complex-from-real-imag 2. 3) (make-complex-from-real-imag 4. -1))
+
+(add 3 (make-complex-from-real-imag 3. 2))
