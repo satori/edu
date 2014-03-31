@@ -21,9 +21,6 @@
 
 (load "2.87.scm")
 
-(put 'neg '(scheme-number)
-     (lambda (x) (- x)))
-
 (define (neg x)
   (apply-generic 'neg x))
 
