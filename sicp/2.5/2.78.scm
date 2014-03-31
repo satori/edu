@@ -34,11 +34,13 @@
 
 (define (type-tag datum)
   (cond ((number? datum) 'scheme-number)
+        ((boolean? datum) 'scheme-boolean)
         ((pair? datum) (car datum))
         (else (error "Bad tagged datum -- TYPE-TAG" datum))))
 
 (define (contents datum)
   (cond ((number? datum) datum)
+        ((boolean? datum) datum)
         ((pair? datum) (cdr datum))
         (else (error "Bad tagged datum -- CONTENTS" datum))))
 
