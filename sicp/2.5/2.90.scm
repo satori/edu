@@ -124,6 +124,10 @@
        (lambda (terms)
          (tag terms)))
 
+  (put 'make 'sparse-terms
+       (lambda (terms)
+         (tag terms)))
+
   'done)
 
 (install-sparse-terms-package)
@@ -166,6 +170,10 @@
   (put '=zero? '(dense-terms) zero-terms?)
 
   (put 'make-from-coeffs 'dense-terms
+       (lambda (coeffs)
+         (tag coeffs)))
+
+  (put 'make 'dense-terms
        (lambda (coeffs)
          (tag coeffs)))
 
