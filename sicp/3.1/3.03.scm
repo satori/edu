@@ -30,13 +30,16 @@
     (set! balance (+ balance amount))
     balance)
 
+  (define (incorrect-password . args)
+    "Incorrect password")
+
   (define (dispatch p m)
     (if (eq? password p)
       (cond ((eq? m 'withdraw) withdraw)
             ((eq? m 'deposit) deposit)
             (else (error "Unknown request -- MAKE-ACCOUNT"
                          m)))
-      (error "Incorrect password")))
+      incorrect-password))
 
   dispatch)
 
