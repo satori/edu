@@ -1,4 +1,4 @@
-# Copyright (C) 2013 by Maxim Bublis <b@codemonkey.ru>
+# Copyright (C) 2013-2014 by Maxim Bublis <b@codemonkey.ru>
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -25,15 +25,11 @@ Usage:
     python a.py < input.txt > output.txt
 """
 import sys
-import math
+
 
 def solve_problem(number, source_lang, target_lang):
     source_base = len(source_lang)
     target_base = len(target_lang)
-
-    source_digits = {}
-    for i, c in enumerate(source_lang):
-        source_digits[c] = i
 
     target_digits = []
     for c in target_lang:
@@ -41,7 +37,7 @@ def solve_problem(number, source_lang, target_lang):
 
     base10 = 0
     for i, c in enumerate(reversed(number)):
-        base10 += source_digits[c] * int(math.pow(source_base, i))
+        base10 += source_lang.index(c) * (source_base ** i)
 
     remainders = []
 
@@ -52,7 +48,8 @@ def solve_problem(number, source_lang, target_lang):
     if not remainders:
         remainders = [0]
 
-    return ''.join(map(lambda c: target_digits[c], reversed(remainders)))
+    return ''.join([target_digits[c] for c in reversed(remainders)])
+
 
 if __name__ == "__main__":
     num_of_cases = int(sys.stdin.readline())
