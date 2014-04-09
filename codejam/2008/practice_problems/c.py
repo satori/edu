@@ -24,7 +24,35 @@ Google Code Jam Practice Problems (2008) Problem C.
 Usage:
     python c.py < input.txt > output.txt
 """
+import collections
 import sys
+
+MAXINT = 2 ** 32
+
+
+def solve_floors(drops, breaks):
+    floors = 0
+
+    q = collections.deque()
+    q.append((drops, breaks))
+
+    while q and floors < MAXINT:
+        d, b = q.popleft()
+
+        b = min([d, b])
+
+        if b >= 32:
+            floors = sys.maxint
+        elif b == 1:
+            floors += d
+        elif d < 300:
+            floors += solve_floors_r(d, b)
+        else:
+            floors += 1
+            q.append((d - 1, b - 1))
+            q.append((d - 1, b))
+
+    return floors
 
 
 def memoized(func):
@@ -37,15 +65,15 @@ def memoized(func):
 
 
 @memoized
-def solve_floors(drops, breaks):
+def solve_floors_r(drops, breaks):
     if breaks == 0 or drops == 0:
         return 0
 
-    return 1 + solve_floors(drops - 1, breaks - 1) + solve_floors(drops - 1, breaks)
+    return 1 + solve_floors_r(drops - 1, breaks - 1) + solve_floors_r(drops - 1, breaks)
 
 
 def solve_drops(floors, breaks):
-    drops = 0
+    drops = 1
     while True:
         if solve_floors(drops, breaks) >= floors:
             return drops
@@ -53,7 +81,7 @@ def solve_drops(floors, breaks):
 
 
 def solve_breaks(floors, drops):
-    breaks = 0
+    breaks = 1
     while True:
         if solve_floors(drops, breaks) >= floors:
             return breaks
@@ -61,11 +89,11 @@ def solve_breaks(floors, drops):
 
 
 def solve_problem(floors, drops, breaks):
-    solved_floors = -1 if solve_floors(drops, breaks) >= 2**32 else solve_floors(drops, breaks)
+    solved_floors = solve_floors(drops, breaks)
     solved_drops = solve_drops(floors, breaks)
     solved_breaks = solve_breaks(floors, drops)
 
-    return solved_floors, solved_drops, solved_breaks
+    return -1 if solved_floors >= MAXINT else solved_floors, solved_drops, solved_breaks
 
 
 if __name__ == "__main__":
