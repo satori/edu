@@ -5,7 +5,7 @@ This repository contains code written for self-educational purposes.
 It consists of:
 
 * [SICP](http://mitpress.mit.edu/sicp/full-text/book/book.html) exercices (MIT/GNU Scheme and Racket).
-* [Google CodeJam](https://code.google.com/codejam/) problems (Python).
+* [Google CodeJam](https://code.google.com/codejam/) problems (Python and Go).
 
 Feel free to examine.
 
