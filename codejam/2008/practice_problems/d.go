@@ -51,7 +51,7 @@ func zeroBit(b uint32, idx uint8) uint32 {
 }
 
 func isPerishable(items uint32, idx uint8) bool {
-	return (items & (1 << (idx+16))) != 0
+	return (items & (1 << (idx + 16))) != 0
 }
 
 func gasCost(pos Pos, dest Pos, price float64) float64 {
@@ -80,7 +80,7 @@ func findMinCost(_cache Cache, pos Pos, items uint32, priceOfGas float64, stores
 		return min_cost
 	}
 
-	if items & EmptyItemsMask == 0 && perishing == false {
+	if items&EmptyItemsMask == 0 && perishing == false {
 		return gasCost(pos, Home, priceOfGas)
 	}
 
@@ -103,7 +103,8 @@ func findMinCost(_cache Cache, pos Pos, items uint32, priceOfGas float64, stores
 			cost := gasCost(pos, store.pos, priceOfGas) + store.prices[item]
 
 			if isPerishable(items, item) || perishing {
-				costOne := gasCost(store.pos, Home, priceOfGas) + findMinCost(_cache, Home, remaining, priceOfGas, stores, false)
+				costOne := gasCost(store.pos, Home, priceOfGas) +
+					findMinCost(_cache, Home, remaining, priceOfGas, stores, false)
 				costTwo := findMinCost(_cache, store.pos, remaining, priceOfGas, stores, true)
 
 				cost = cost + math.Min(costOne, costTwo)
